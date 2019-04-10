@@ -21,17 +21,15 @@ grafo.addEdge("D", "E", 3)
 grafo.addEdge("E", "D", 2)
 grafo.addEdge("E", "F", 9)
 
-lol = grafo_para_adjacencian(grafo)
+lol = grafo_para_adjacencia(grafo)
 kk = buscaMenorCaminho(lol)
 
 origem = lol.buscaVerticePorDado("nome", "A")
 
 destino = lol.buscaVerticePorDado("nome", "F")
 
-# print(lol.lista)
-print(origem.aresta)
 # print(destino)
 
-# print(kk.menorCaminho(origem,destino))
+print(kk.menorCaminho(origem, destino))
 
 # diji = buscaMenorCaminho(grafo)

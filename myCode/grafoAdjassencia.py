@@ -1,8 +1,11 @@
 class Aresta:
 
-    def __init__(self):
-        self.peso = 0
-        self.verticeLigado = None
+    def __init__(self, peso=0, verticeLigado=None):
+        self.peso = peso
+        self.verticeLigado = verticeLigado
+
+    def __str__(self):
+        return "Peso:{}\nVertice Ligado:{}".format(self.peso, self.verticeLigado)
 
 
 class Vertice:
@@ -23,11 +26,11 @@ class Vertice:
     def showKeys(self):
         return self.dado.keys()
 
-    def addAresta(self, outroVertice, peso):
-        aux = Aresta()
-        aux.peso = peso
-        aux.verticeligado = outroVertice
-        self.aresta.append(aux)
+    def addAresta(self, peso, outroVertice):
+        self.aresta.append(Aresta(peso, outroVertice))
+
+    def __str__(self):
+        return "Dados {} \n Arestas {}".format(self.dado, self.aresta)
 
 
 class ListaAdjassencia:

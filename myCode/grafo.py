@@ -53,7 +53,7 @@ class Graph:
         return list(map(lambda x: x.grau(), list(self.nodes.values())))
 
 
-def grafo_para_adjacencian(grafo):
+def grafo_para_adjacencia(grafo):
     lista = ListaAdjassencia()
 
     for key in grafo.nodes:
@@ -63,7 +63,17 @@ def grafo_para_adjacencian(grafo):
 
         lista.addVertice(new_vertice)
 
+    for key in grafo.nodes:
+        for edg in grafo.nodes[key].edges:
+            for vertice in lista.lista:
+                if vertice.dado["nome"] == edg.origin.name:
+                    destiny = lista.buscaVerticePorDado("nome", edg.destiny.name)
+                    vertice.addAresta(edg.weight, destiny)
+
+
+
+
     # for edge in grafo.nodes[key].edges:
     #     print(edge.destiny)
-
+    # print(lista.lista[])
     return lista
