@@ -3,7 +3,6 @@ class buscaMenorCaminho:
         self.listaAdjassencia = lista
         self.listaAdjassencia.addMultItemAllVertice(["Pai", "distancia"], [None, float('inf')])
 
-
     def menorCaminho(self, VA, VB):
         VA.addDado("distancia", 0)
         verticeAvaliado = VA
@@ -22,10 +21,10 @@ class buscaMenorCaminho:
                     if are.verticeLigado not in listaVerticesRelaxados:
                         listaAux.append(are.verticeLigado)
 
-            while verticeAvaliado in listaAux:
-                listaAux.remove(verticeAvaliado)
+            listaAux.remove(verticeAvaliado)
 
-            if len(listaAux) > 0: verticeAvaliado = listaAux[0]
+            if len(listaAux) > 0:
+                verticeAvaliado = listaAux[0]
 
             for ver in listaAux:
                 if verticeAvaliado.dado["distancia"] > ver.dado["distancia"]:

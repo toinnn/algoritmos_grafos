@@ -30,7 +30,11 @@ class Vertice:
         self.aresta.append(Aresta(peso, outroVertice))
 
     def __str__(self):
-        return "Dados {} \n Arestas {}".format(self.dado, self.aresta)
+        return "{}".format(self.dado["nome"])
+
+    def __repr__(self):
+        return str(self)
+
 
 
 class ListaAdjassencia:

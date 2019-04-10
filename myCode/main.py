@@ -21,15 +21,21 @@ grafo.addEdge("D", "E", 3)
 grafo.addEdge("E", "D", 2)
 grafo.addEdge("E", "F", 9)
 
-lol = grafo_para_adjacencia(grafo)
-kk = buscaMenorCaminho(lol)
+# teste de ciclo infinito (fake ?)
+# grafo.addEdge("C", "A",-1)
+# grafo.addEdge("B", "C",-1)
 
-origem = lol.buscaVerticePorDado("nome", "A")
 
-destino = lol.buscaVerticePorDado("nome", "F")
+# fica infinito (real ?)
+# grafo.addEdge("C", "E", -1)
+# grafo.addEdge("E", "D", -2)
 
-# print(origem.aresta[0].verticeLigado.aresta[0])
 
-print(kk.menorCaminho(origem, destino))
+grafo_adjacencia = grafo_para_adjacencia(grafo)
+dijkstra = buscaMenorCaminho(grafo_adjacencia)
 
-# diji = buscaMenorCaminho(grafo)
+origem = grafo_adjacencia.buscaVerticePorDado("nome", "A")
+
+destino = grafo_adjacencia.buscaVerticePorDado("nome", "F")
+
+print("O caminho é:{}".format(dijkstra.menorCaminho(origem, destino)))
