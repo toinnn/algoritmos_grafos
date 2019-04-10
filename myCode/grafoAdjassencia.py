@@ -57,3 +57,6 @@ class ListaAdjassencia:
 
     def alteraItemVertice(self, vertice, nomeDado, dado):
         vertice.addDado(nomeDado, dado)
+
+    def __str__(self):
+        return self.lista

@@ -28,7 +28,7 @@ origem = lol.buscaVerticePorDado("nome", "A")
 
 destino = lol.buscaVerticePorDado("nome", "F")
 
-# print(destino)
+# print(origem.aresta[0].verticeLigado.aresta[0])
 
 print(kk.menorCaminho(origem, destino))
 

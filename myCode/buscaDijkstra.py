@@ -1,9 +1,6 @@
-from myCode.grafoAdjassencia import *
-
-
 class buscaMenorCaminho:
     def __init__(self, lista):
-        self.listaAdjassencia = ListaAdjassencia()
+        self.listaAdjassencia = lista
 
     def menorCaminho(self, VA, VB):
         self.listaAdjassencia.addMultItemAllVertice(["Pai", "distancia"], [None, float('inf')])
@@ -42,11 +39,11 @@ class buscaMenorCaminho:
             verticeAvaliado = VB
 
             while verticeAvaliado != VA:
-                ListaResposta.append(verticeAvaliado)
+                ListaResposta.append(verticeAvaliado.getDado("nome"))
                 verticeAvaliado = verticeAvaliado.dado["Pai"]
 
-            ListaResposta.append(verticeAvaliado)
+            ListaResposta.append(verticeAvaliado.getDado("nome"))
             # Talvez não de pra reverter no retorno, caso não de é só separar em 2 linhas
-            return ListaResposta.reverse()
+            return ListaResposta[::-1]
         else:
             return None
