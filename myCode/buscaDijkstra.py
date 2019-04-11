@@ -13,6 +13,7 @@ class buscaMenorCaminho:
 
         while len(listaAux) != 0:
             listaVerticesRelaxados.append(verticeAvaliado)
+            verticeAvaliado.aresta.sort(key=lambda x: x.peso)
             for are in verticeAvaliado.aresta:
 
                 if are.verticeLigado.dado["distancia"] > are.peso + verticeAvaliado.dado["distancia"]:
@@ -22,10 +23,12 @@ class buscaMenorCaminho:
                     if are.verticeLigado not in listaVerticesRelaxados:
                         listaAux.append(are.verticeLigado)
 
-            while verticeAvaliado in listaAux:
-                listaAux.remove(verticeAvaliado)
 
-            if len(listaAux) > 0: verticeAvaliado = listaAux[0]
+            listaAux = list(filter((verticeAvaliado).__ne__, listaAux))
+
+            listaAux.sort(key=lambda x: x.dado["distancia"])
+
+            if listaAux: verticeAvaliado = listaAux[0]
 
             for ver in listaAux:
                 if verticeAvaliado.dado["distancia"] > ver.dado["distancia"]:

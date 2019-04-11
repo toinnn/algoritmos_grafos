@@ -1,41 +1,39 @@
-from myCode.buscaDijkstra import *
-from myCode.grafo import *
-
-grafo = Graph()
-
-grafo.addNode("A")
-grafo.addNode("B")
-grafo.addNode("C")
-grafo.addNode("D")
-grafo.addNode("E")
-grafo.addNode("F")
-
-grafo.addEdge("A", "B", 1)
-grafo.addEdge("A", "C", 8)
-grafo.addEdge("B", "D", 2)
-grafo.addEdge("C", "B", 3)
-grafo.addEdge("C", "E", 1)
-grafo.addEdge("D", "F", 1)
-grafo.addEdge("D", "C", 1)
-grafo.addEdge("D", "E", 3)
-grafo.addEdge("E", "D", 2)
-grafo.addEdge("E", "F", 9)
-
-# teste de ciclo infinito (fake ?)
-# grafo.addEdge("C", "A",-1)
-# grafo.addEdge("B", "C",-1)
+from myCode.bellmanFord import *
+from myCode.createGraphExample import *
 
 
-# fica infinito (real ?)
-# grafo.addEdge("C", "E", -1)
-# grafo.addEdge("E", "D", -2)
+# grafo com valores positivos
+grafo = graphOne()
+
+# grafo com valores negativos
+# grafo = graphTwo()
+
 
 
 grafo_adjacencia = grafo_para_adjacencia(grafo)
-dijkstra = buscaMenorCaminho(grafo_adjacencia)
 
+# dijkstra = buscaMenorCaminho(grafo_adjacencia)
+ford = buscaMenorCaminhoFord(grafo_adjacencia)
+
+
+
+# grafo nomal com pesos positivos
 origem = grafo_adjacencia.buscaVerticePorDado("nome", "A")
-
 destino = grafo_adjacencia.buscaVerticePorDado("nome", "F")
 
-print("O caminho é:{}".format(dijkstra.menorCaminho(origem, destino)))
+# grafo com pesos negativos
+# origem = grafo_adjacencia.buscaVerticePorDado("nome", "S")
+# destino = grafo_adjacencia.buscaVerticePorDado("nome", "B")
+
+
+# Codigo do algoritimo do dijkstra
+# Aceita somente origem e destino e retorna uma lista de objetos Vertice
+# que ja estao na ordem a serem seguidos
+# print("O caminho é:{}\n".format(dijkstra.menorCaminho(origem, destino)))
+
+
+# Colocando so a origem como parametro a funcao irar retornar uma lista com o historico de todos os pesos
+# adicionando o destino vai devolver uma lista de objetos na ordem do melhor caminho
+print(ford.menorCaminho(origem,destino))
+
+
