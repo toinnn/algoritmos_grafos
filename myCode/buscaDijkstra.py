@@ -1,7 +1,10 @@
+import copy
+
 class buscaMenorCaminho:
     def __init__(self, lista):
         self.listaAdjassencia = lista
         self.listaAdjassencia.addMultItemAllVertice(["Pai", "distancia"], [None, float('inf')])
+        self.historicoLista = list()
 
 
     def menorCaminho(self, VA, VB):
@@ -11,7 +14,7 @@ class buscaMenorCaminho:
         listaVerticesRelaxados = list()
         listaAux.append(verticeAvaliado)
 
-        while len(listaAux) != 0:
+        while listaAux:
             listaVerticesRelaxados.append(verticeAvaliado)
             verticeAvaliado.aresta.sort(key=lambda x: x.peso)
             for are in verticeAvaliado.aresta:
@@ -34,16 +37,23 @@ class buscaMenorCaminho:
                 if verticeAvaliado.dado["distancia"] > ver.dado["distancia"]:
                     verticeAvaliado = ver
 
+                self.historicoLista.append(copy.deepcopy(self.listaAdjassencia))
+
+        if VB is not None:
+            return self.lista_para_caminho(VA, VB)
+
+        return self.historicoLista
+
+    def lista_para_caminho(self, VA, VB):
         if VB.dado["Pai"] != None:
             ListaResposta = list()
             verticeAvaliado = VB
-
             while verticeAvaliado != VA:
                 ListaResposta.append(verticeAvaliado)
                 verticeAvaliado = verticeAvaliado.dado["Pai"]
-
+                if verticeAvaliado in ListaResposta:
+                    raise ValueError('Um ciclo Negativo foi encontrado')
             ListaResposta.append(verticeAvaliado)
-            # Talvez não de pra reverter no retorno, caso não de é só separar em 2 linhas
             return ListaResposta[::-1]
         else:
             return None

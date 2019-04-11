@@ -13,11 +13,11 @@ def graphOne():
     grafo.addEdge("A", "C", 8)
     grafo.addEdge("B", "D", 2)
     grafo.addEdge("C", "B", 3)
-    grafo.addEdge("C", "E", 1)
+    # grafo.addEdge("C", "E", 1)
     grafo.addEdge("D", "F", 1)
     grafo.addEdge("D", "C", 1)
     grafo.addEdge("D", "E", 3)
-    grafo.addEdge("E", "D", 2)
+    # grafo.addEdge("E", "D", 2)
     grafo.addEdge("E", "F", 9)
 
     # teste com valores negativos
@@ -25,8 +25,8 @@ def graphOne():
     # grafo.addEdge("B", "C",-1)
 
     # Ciclo infinito bug na hora de rotanar a lista de Pai
-    # grafo.addEdge("C", "E", -1)
-    # grafo.addEdge("E", "D", -2)
+    grafo.addEdge("C", "E", -1)
+    grafo.addEdge("E", "D", -2)
 
 
 

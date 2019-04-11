@@ -43,29 +43,6 @@ class buscaMenorCaminhoFord:
 
         return self.historicoLista
 
-    def tem_ciclo_negativo(self, VA, VB):
-        VA.addDado("distancia", 0)
-        verticeAvaliado = VA
-        listaAux = list()
-        listaVerticesRelaxados = list()
-        listaAux.append(verticeAvaliado)
-
-        while len(listaAux) != 0:
-            listaVerticesRelaxados.append(verticeAvaliado)
-            verticeAvaliado.aresta.sort(key=lambda x: x.peso)
-            for are in verticeAvaliado.aresta:
-
-                if are.verticeLigado.dado["distancia"] > are.peso + verticeAvaliado.dado["distancia"]:
-                    raise ValueError('Um ciclo Negativo')
-
-            listaAux = list(filter((verticeAvaliado).__ne__, listaAux))
-
-            listaAux.sort(key=lambda x: x.dado["distancia"])
-
-            if listaAux:  verticeAvaliado = listaAux[0]
-
-            for ver in listaAux:
-                if verticeAvaliado.dado["distancia"] > ver.dado["distancia"]: verticeAvaliado = ver
 
     def lista_para_caminho(self, VA, VB):
         if VB.dado["Pai"] != None:
@@ -74,6 +51,8 @@ class buscaMenorCaminhoFord:
             while verticeAvaliado != VA:
                 ListaResposta.append(verticeAvaliado)
                 verticeAvaliado = verticeAvaliado.dado["Pai"]
+                if verticeAvaliado in ListaResposta:
+                    raise ValueError('Um ciclo Negativo foi encontrado')
             ListaResposta.append(verticeAvaliado)
             return ListaResposta[::-1]
         else:
